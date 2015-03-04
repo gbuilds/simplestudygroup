@@ -1,0 +1,7 @@
+This is the final project that I built following The Odin Project, see here:
+http://www.theodinproject.com/ruby-on-rails/final-project
+
+I've added and changed a few things. Studygroup is a group learning application.
+It will help people connect locally with small groups of people who are studying the same thing.
+
+Using Postgresql, Devise, HAML, and attempting to write some basic tests.
