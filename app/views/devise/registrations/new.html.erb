@@ -7,6 +7,21 @@
     <%= f.label :email %><br />
     <%= f.email_field :email, autofocus: true %>
   </div>
+  
+  <div class="field">
+    <%= f.label :first_name %></br>
+    <%= f.text_field :first_name, autofocus: true %>
+  </div>
+
+  <div class="field">
+    <%= f.label :last_name %></br>
+    <%= f.text_field :last_name, autofocus: true %>
+  </div>
+
+  <div class="field">
+    <%= f.label :description %></br>
+<%= f.text_area :description, autofocus: true, placeholder: "Share a few sentences about yourself. I am a ___ interested in learning ___ !", size: "20x5"  %>
+  </div>
 
   <div class="field">
     <%= f.label :password %>
