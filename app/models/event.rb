@@ -1,3 +1,3 @@
 class Event < ActiveRecord::Base
-  belongs_to :User, as: "creator"
+  belongs_to :creator, class_name: "User"
 end

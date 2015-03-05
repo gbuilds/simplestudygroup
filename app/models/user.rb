@@ -5,5 +5,5 @@ class User < ActiveRecord::Base
          :recoverable, :rememberable, :trackable, :validatable
   
   belongs_to :city
-  has_many :events, as: "created_events"
+  has_many :created_events, class_name: "Event", foreign_key: "creator_id"
 end
