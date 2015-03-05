@@ -1,4 +1,11 @@
 %h1
-  User
+  = full_name @user
+%p
+  ID: 
   = @user.id
+%p
   = @user.email
+%p
+  = @user.description
+%p
+  = @user.city.name
