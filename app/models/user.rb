@@ -5,4 +5,5 @@ class User < ActiveRecord::Base
          :recoverable, :rememberable, :trackable, :validatable
   
   belongs_to :city
+  has_many :events, as: "created_events"
 end
