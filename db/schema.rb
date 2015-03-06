@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150306174237) do
+ActiveRecord::Schema.define(version: 20150306203133) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -51,8 +51,10 @@ ActiveRecord::Schema.define(version: 20150306174237) do
     t.datetime "created_at",  null: false
     t.datetime "updated_at",  null: false
     t.integer  "creator_id"
+    t.integer  "city_id"
   end
 
+  add_index "events", ["city_id"], name: "index_events_on_city_id", using: :btree
   add_index "events", ["creator_id"], name: "index_events_on_creator_id", using: :btree
 
   create_table "users", force: true do |t|
@@ -82,5 +84,6 @@ ActiveRecord::Schema.define(version: 20150306174237) do
   add_foreign_key "attendances", "users"
   add_foreign_key "comments", "events"
   add_foreign_key "comments", "users"
+  add_foreign_key "events", "cities"
   add_foreign_key "users", "cities"
 end
