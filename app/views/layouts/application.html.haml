@@ -11,4 +11,7 @@
   = link_to 'Sign Up', new_user_registration_path
   = link_to 'Sign Out', destroy_user_session_path, method: :delete
 
+%h4
+  Signed in as
+  = full_name current_user
 = yield

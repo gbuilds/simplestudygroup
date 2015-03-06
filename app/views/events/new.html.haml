@@ -1,0 +1,18 @@
+%h4 Create an Event:
+
+= form_for(@event) do |f|
+ = f.label :title
+ </br>
+ = f.text_field :title
+ </br>
+ = f.label :description
+ </br>
+ = f.text_area :description
+ </br>
+ = f.label :start_time
+ = f.datetime_select :start_time, ampm: true, default: Time.now
+ </br>
+ = f.label :end_time
+ = f.datetime_select :end_time, ampm: true, default: Time.now, start_year: Time.now.year
+ </br>
+ = f.submit
