@@ -4,6 +4,7 @@ class Event < ActiveRecord::Base
   validates :start_time, presence: true
   validates :end_time, presence: true
   
+  belongs_to :city
   belongs_to :creator, class_name: "User"
   
   has_many :comments
