@@ -7,18 +7,21 @@
     = csrf_meta_tags
   %body
   
-  = link_to 'Sign In', new_user_session_path
-  = link_to 'Sign Up', new_user_registration_path
-  = link_to 'Sign Out', destroy_user_session_path, method: :delete
+%h4
+  - if !user_signed_in?
+    = link_to 'Sign In', new_user_session_path
+    = link_to 'Sign Up', new_user_registration_path
 
 %h4
-  Signed in as
-  = current_user.full_name
+  - if user_signed_in?
+    Signed in as
+    = current_user.full_name
+    = link_to 'Sign Out', destroy_user_session_path, method: :delete
+    
 
-= if flash.any?
-  = flash.each do |key, value|
+- if flash.any?
+  - flash.each do |key, value|
     .alert{ :class => "alert-#{key}" }
-      %button.close{ :data => { :dismiss => "alert" } } x
       %strong
         = value
 = yield

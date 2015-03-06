@@ -1,4 +1,8 @@
 class User < ActiveRecord::Base
+  validates :email, uniqueness: true
+  validates :first_name, presence: true, length: { minimum: 2 }
+  validates :last_name, presence: true, length: { minimum: 2}
+  validates :description, length: { maximum: 500 }
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable and :omniauthable
   devise :database_authenticatable, :registerable,
