@@ -6,4 +6,9 @@ class User < ActiveRecord::Base
   
   belongs_to :city
   has_many :created_events, class_name: "Event", foreign_key: "creator_id"
+  
+  # Returns the joined first and last_name for a User
+  def full_name
+    "#{self.first_name} #{self.last_name}"
+  end
 end

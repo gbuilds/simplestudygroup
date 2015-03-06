@@ -13,5 +13,12 @@
 
 %h4
   Signed in as
-  = full_name current_user
+  = current_user.full_name
+
+= if flash.any?
+  = flash.each do |key, value|
+    .alert{ :class => "alert-#{key}" }
+      %button.close{ :data => { :dismiss => "alert" } } x
+      %strong
+        = value
 = yield
