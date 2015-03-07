@@ -3,18 +3,13 @@
 - @events.each do |event|
   %h4
     = event.title
+    ||
+    = event.city.name
   %p
     = event.description
   %p
     Start:
     = event.start_time
-  %p
     End:
     = event.end_time
-  %p
-    Event Id:
-    = event.id
-  %p
-    Event City Id
-/    = event.city.id
   
