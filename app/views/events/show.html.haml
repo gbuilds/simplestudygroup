@@ -7,3 +7,16 @@
   = @event.city_id
   Event Id
   = @event.id
+  
+
+  
+= form_for ([@event, current_user.comments.build]) do |f|
+  = f.label :body, "Comments:"
+  </br>
+  = f.text_area :body, placeholder: "Your comment..."
+  </br>
+  = f.submit "Submit"
+  
+- @event.comments.each do |comment|
+  %div
+  = comment.body
