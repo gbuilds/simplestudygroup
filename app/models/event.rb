@@ -9,5 +9,5 @@ class Event < ActiveRecord::Base
   
   has_many :comments
   has_many :attendances
-  has_many :attendees, class_name: "User", through: :attendances, source: :event
+  has_many :attendees, class_name: "User", through: :attendances, source: :user
 end

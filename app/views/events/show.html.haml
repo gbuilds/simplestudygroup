@@ -8,7 +8,10 @@
   Event Id
   = @event.id
   
-
+= form_for([@event, @attendance], url: :attendances, method: :post) do |f|
+  = f.hidden_field :event_id, value: @event.id
+  = f.submit "Attend"
+  
   
 = form_for ([@event, current_user.comments.build]) do |f|
   = f.label :body, "Comments:"
@@ -20,3 +23,16 @@
 - @event.comments.each do |comment|
   %div
   = comment.body
+  by
+  = comment.user
+
+- if @attendees.any?
+  %p
+    There are 
+    = @attendees.count
+    registered attendees.
+  - @attendees.each do |a|
+    %div
+    = a.full_name
+- else
+  %p No one is registered for this event yet

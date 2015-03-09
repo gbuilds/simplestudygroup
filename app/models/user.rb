@@ -13,7 +13,7 @@ class User < ActiveRecord::Base
   has_many :comments
   has_many :created_events, class_name: "Event", foreign_key: "creator_id"
   has_many :attendances
-  has_many :attended_events, class_name: "Event", through: :attendances, source: :user
+  has_many :attended_events, class_name: "Event", through: :attendances, source: :event
   
   # Returns the joined first and last_name for a User
   def full_name
