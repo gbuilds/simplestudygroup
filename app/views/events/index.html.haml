@@ -3,10 +3,11 @@
 - @events.each do |event|
   %h4
     = event.title
-    ||
+    \-
     = event.city.name
-  %p
-    = event.description
+    \-
+    = link_to "See Event", event_path(event)
+  
   %p
     Start:
     = event.start_time

@@ -30,7 +30,7 @@
   %div
   = comment.body
   by
-  = comment.user
+  = comment.user.first_name
 
 - if @attendees.any?
   %p
