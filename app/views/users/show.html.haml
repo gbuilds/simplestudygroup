@@ -1,11 +1,17 @@
 %h1
   = @user.full_name
-%p
-  ID: 
-  = @user.id
-%p
-  = @user.email
+%h5 Description:
 %p
   = @user.description
-%p
+%h5 Tagged Interests:
+%h5 
+  Location:
   = @user.city.name
+%h5 Friends:
+%h5 Contact Information:
+%h5 Attending Events:
+%ul
+  - @user.attended_events.each do |event|
+    %li
+      = event.title
+    

@@ -1,12 +1,11 @@
 %h1 
-  Users (
-  = @users.count
-  )
+  Users
 - @users.each do |user|
-  %div
-    %h4
+  %h4
     = user.full_name
-    ||
+    \-
     = user.city.name
+    \-
+    = link_to "See Profile", user_path(user)
   %p
   = user.description
