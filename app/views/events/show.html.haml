@@ -8,9 +8,15 @@
   Event Id
   = @event.id
   
+%p Are you going?
+
 = form_for([@event, @attendance], url: :attendances, method: :post) do |f|
   = f.hidden_field :event_id, value: @event.id
-  = f.submit "Attend"
+  = f.submit "Attending"
+  
+= form_for([@event, @attendance], url: :attendance, method: :delete) do |f|
+  = f.hidden_field :event_id, value: @event.id
+  = f.submit "Not Attending"
   
   
 = form_for ([@event, current_user.comments.build]) do |f|

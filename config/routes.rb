@@ -5,5 +5,5 @@ Rails.application.routes.draw do
   resources :events do
     resources :comments
   end
-  resources :attendances, only: [:create]
+  resources :attendances, only: [:create, :destroy]
 end

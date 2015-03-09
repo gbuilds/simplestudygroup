@@ -20,8 +20,11 @@ class AttendancesController < ApplicationController
   end
   
   def destroy
-    # Find the right attendance object in database
+    @event = Event.find(params[:id])
+    @attendance = @event.attendances.where(user_id: current_user.id).first
     @attendance.destroy
+    flash[:success] = "Deleted your attendance"
+    redirect_to event_path(@event)
   end
   
 end
