@@ -15,4 +15,8 @@
   - @user.attended_events.each do |event|
     %li
       = event.title
-    
+%h5 Created Events:
+%ul
+  - @user.created_events.each do |event|
+    %li
+      = event.title
