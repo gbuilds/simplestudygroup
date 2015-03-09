@@ -2,6 +2,7 @@
   Users
 - @users.each do |user|
   %h4
+    = gravatar_for(user, size: 25)
     = user.full_name
     \-
     = user.city.name
