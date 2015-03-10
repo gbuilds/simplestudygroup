@@ -20,4 +20,21 @@ class User < ActiveRecord::Base
   def full_name
     "#{self.first_name} #{self.last_name}"
   end
+  
+  # Returns the users with a specific tag
+  def self.tagged_with(name)
+    Tag.find_by_name!(name).events
+  end
+  
+  # Returns a string of the tags for a user
+  def tag_list
+    tags.map(&:name).join(", ")
+  end
+  
+  # Takes a comma-separated string and sets User tags
+  def tag_list=(names)
+    self.tags = names.split(", ").map do |n|
+      Tag.where(name: n.strip).first_or_create!
+    end
+  end
 end

@@ -11,4 +11,22 @@ class Event < ActiveRecord::Base
   has_many :attendances
   has_many :attendees, class_name: "User", through: :attendances, source: :user
   has_many :tags, as: :taggings
+  
+  # Return the Events with a specific tag
+  def self.tagged_with(name)
+    Tag.find_by_name!(name).events
+  end
+  
+  # Returns a string of the tags for a user
+  def tag_list
+    tags.map(&:name).join(", ")
+  end
+  
+  # Takes a comma-separated string and sets Event tags
+  def tag_list=(names)
+    self.tags = names.split(", ").map do |n|
+      Tag.where(name: n.strip).first_or_create!
+    end
+  end
+  
 end
