@@ -7,7 +7,10 @@
   = @event.city_id
   Event Id
   = @event.id
-  
+%h5
+  Tags:
+  = raw @event.tags.map(&:name).map { |t| link_to t, '#' }.join(', ')
+
 %p Are you going?
 
 = form_for([@event, @attendance], url: :attendances, method: :post) do |f|

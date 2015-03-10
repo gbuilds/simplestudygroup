@@ -9,6 +9,10 @@
  </br>
  = f.text_area :description
  </br>
+ = f.label :tag_list, "Tags (separated by commas)"
+ </br>
+ = f.text_field :tag_list
+ </br>
  = f.label :start_time
  = f.datetime_select :start_time, ampm: true, default: Time.now
  </br>
