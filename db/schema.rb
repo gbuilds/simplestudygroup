@@ -59,13 +59,13 @@ ActiveRecord::Schema.define(version: 20150310000859) do
 
   create_table "tags", force: true do |t|
     t.string   "name"
-    t.integer  "tagging_id"
-    t.string   "tagging_type"
-    t.datetime "created_at",   null: false
-    t.datetime "updated_at",   null: false
+    t.integer  "taggings_id"
+    t.string   "taggings_type"
+    t.datetime "created_at",    null: false
+    t.datetime "updated_at",    null: false
   end
 
-  add_index "tags", ["tagging_type", "tagging_id"], name: "index_tags_on_tagging_type_and_tagging_id", using: :btree
+  add_index "tags", ["taggings_type", "taggings_id"], name: "index_tags_on_taggings_type_and_taggings_id", using: :btree
 
   create_table "users", force: true do |t|
     t.string   "email",                  default: "", null: false
