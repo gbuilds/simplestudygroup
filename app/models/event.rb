@@ -3,6 +3,7 @@ class Event < ActiveRecord::Base
   validates :description, presence: true, length: { minimum: 5, maximum: 1000 }
   validates :start_time, presence: true
   validates :end_time, presence: true
+  validates_associated :city
   
   belongs_to :city
   belongs_to :creator, class_name: "User"

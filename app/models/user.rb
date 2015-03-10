@@ -3,6 +3,7 @@ class User < ActiveRecord::Base
   validates :first_name, presence: true, length: { minimum: 2 }
   validates :last_name, presence: true, length: { minimum: 2}
   validates :description, length: { maximum: 500 }
+  validates_associated :city
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable and :omniauthable
   devise :database_authenticatable, :registerable,
