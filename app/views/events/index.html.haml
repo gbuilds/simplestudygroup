@@ -1,4 +1,5 @@
 %h1 Events
+= link_to "Create an Event", new_event_path
 
 - @events.each do |event|
   %h4
@@ -7,7 +8,8 @@
     = event.city.name
     \-
     = link_to "See Event", event_path(event)
-  
+  %h5
+    = raw event.tags.map(&:name).map { |t| link_to t, events_path(:tag => t) }.join(', ')
   %p
     Start:
     = event.start_time

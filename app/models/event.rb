@@ -10,7 +10,9 @@ class Event < ActiveRecord::Base
   has_many :comments
   has_many :attendances
   has_many :attendees, class_name: "User", through: :attendances, source: :user
-  has_many :tags, as: :taggings
+  has_many :taggings, as: :taggable
+  has_many :tags, through: :taggings
+  
   
   # Return the Events with a specific tag
   def self.tagged_with(name)

@@ -9,7 +9,7 @@
   = @event.id
 %h5
   Tags:
-  = raw @event.tags.map(&:name).map { |t| link_to t, '#' }.join(', ')
+  = raw @event.tags.map(&:name).map { |t| link_to t, events_path(:tag => t) }.join(', ')
 
 %p Are you going?
 
