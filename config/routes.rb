@@ -6,5 +6,6 @@ Rails.application.routes.draw do
     resources :comments
   end
   get 'events/:tag', to: 'event#index'
+  get 'users/:tag', to: 'users#index'
   resources :attendances, only: [:create, :destroy]
 end

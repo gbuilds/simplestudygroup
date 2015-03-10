@@ -1,10 +1,13 @@
 %h1
   = gravatar_for(current_user, size: 50)
   = @user.full_name
+= link_to "Edit my profile", edit_user_path(current_user)
 %h5 Description:
 %p
   = @user.description
-%h5 Tagged Interests:
+%h5
+  Tagged Interests:
+  = raw @user.tags.map(&:name).map { |t| link_to t, users_path(:tag => t) }.join(', ')
 %h5 
   Location:
   = @user.city.name

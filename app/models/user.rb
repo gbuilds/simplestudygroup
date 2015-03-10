@@ -24,7 +24,7 @@ class User < ActiveRecord::Base
   
   # Return the Users with a specific tag
   def self.tagged_with(name)
-    Tag.find_by_name!(name).events
+    Tag.find_by_name!(name).users
   end
   
   # Returns a string of the tags for a user
