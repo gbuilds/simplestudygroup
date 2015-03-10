@@ -1,6 +1,6 @@
 class EventsController < ApplicationController
   before_action :logged_in_user
-  before_action :user_is_creator [:edit, :update, :destroy]
+  before_action :user_is_creator, only: [:edit, :update, :destroy]
   
   def new
     @event = current_user.created_events.build
