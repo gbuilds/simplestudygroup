@@ -22,6 +22,10 @@
     <%= f.label :description %></br>
 <%= f.text_area :description, autofocus: true, placeholder: "Share a few sentences about yourself. I am a ___ interested in learning ___ !", size: "20x5"  %>
   </div>
+  <div class="field">
+    <%= f.label :city_id, "City" %>
+    <%= f.select :city_id, City.all.collect {|c| [c.name, c.id]}, {} %>
+  </div>
 
   <div class="field">
     <%= f.label :password %>

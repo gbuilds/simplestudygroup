@@ -1,5 +1,6 @@
 class EventsController < ApplicationController
-  before_action :logged_in_user?
+  before_action :logged_in_user
+  before_action :user_is_creator [:edit, :update, :destroy]
   
   def new
     @event = current_user.created_events.build
@@ -35,10 +36,15 @@ class EventsController < ApplicationController
     params.require(:event).permit(:title, :description, :start_time, :end_time, :tag_list).merge(city_id: current_user.city_id)
   end
   
-  def logged_in_user?
+  def logged_in_user
     unless user_signed_in?
       flash[:warning] = "You are not signed in."
       redirect_to new_user_session_path
     end
+  end
+  
+  def user_is_creator
+    event = Event.find(params[:id])
+    redirect_to root_url unless event.creator == current_user
   end
 end
