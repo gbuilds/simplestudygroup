@@ -22,7 +22,7 @@ class User < ActiveRecord::Base
     "#{self.first_name} #{self.last_name}"
   end
   
-  # Returns the users with a specific tag
+  # Return the Users with a specific tag
   def self.tagged_with(name)
     Tag.find_by_name!(name).events
   end
