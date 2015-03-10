@@ -1,3 +1,3 @@
 class Tag < ActiveRecord::Base
-  belongs_to :tagging
+  belongs_to :tagging, polymorphic: true
 end
