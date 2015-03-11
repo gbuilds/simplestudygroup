@@ -16,6 +16,21 @@ class EventsController < ApplicationController
     end
   end
   
+  def edit
+    @event = Event.find(params[:id])
+  end
+  
+  def update
+    @event = Event.find(params[:id])
+    if @event.update_attributes(event_params)
+      flash[:success] = "Event successfully updated"
+      redirect_to @event
+    else
+      flash[:danger].now = "Event failed to save"
+      render 'edit'
+    end
+  end
+  
   def show
     @event = Event.find(params[:id])
     @attendees = @event.attendees.all

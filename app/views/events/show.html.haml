@@ -1,12 +1,15 @@
 %h1= @event.title
+= link_to "Edit Event", edit_event_path(@event)
 %p= @event.description
 %p
+  Start:
   = @event.start_time
+%p
+  End:
   = @event.end_time
-  City Id
-  = @event.city_id
-  Event Id
-  = @event.id
+%h5
+  Location:
+  = @event.city.name
 %h5
   Tags:
   = raw @event.tags.map(&:name).map { |t| link_to t, events_path(:tag => t) }.join(', ')
