@@ -60,6 +60,9 @@ class EventsController < ApplicationController
   
   def user_is_creator
     event = Event.find(params[:id])
-    redirect_to root_url unless event.creator == current_user
+    unless event.creator == current_user
+      redirect_to event
+      flash[:danger] = "You need to be the event's creator to edit"
+    end
   end
 end

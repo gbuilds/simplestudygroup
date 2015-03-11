@@ -7,6 +7,9 @@
   </br>
   = f.text_field :last_name
   </br>
+  = f.label :city_id, "City"
+  = f.select :city_id, City.all.collect {|c| [c.name, c.id]}, {}
+  </br>
   = f.label :tag_list, "Tags (separated by commas)"
   </br>
   = f.text_field :tag_list
