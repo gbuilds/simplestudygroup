@@ -11,9 +11,9 @@ class User < ActiveRecord::Base
   
   belongs_to :city
   
-  has_many :comments
+  has_many :comments, dependent: :destroy
   has_many :created_events, class_name: "Event", foreign_key: "creator_id"
-  has_many :attendances
+  has_many :attendances, dependent: :destroy
   has_many :attended_events, class_name: "Event", through: :attendances, source: :event
   has_many :taggings, as: :taggable
   has_many :tags, through: :taggings

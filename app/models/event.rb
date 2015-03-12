@@ -8,8 +8,8 @@ class Event < ActiveRecord::Base
   belongs_to :city
   belongs_to :creator, class_name: "User"
   
-  has_many :comments
-  has_many :attendances
+  has_many :comments, dependent: :destroy
+  has_many :attendances, dependent: :destroy
   has_many :attendees, class_name: "User", through: :attendances, source: :user
   has_many :taggings, as: :taggable
   has_many :tags, through: :taggings
