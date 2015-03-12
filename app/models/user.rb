@@ -38,4 +38,8 @@ class User < ActiveRecord::Base
       Tag.where(name: n.strip.downcase.titleize).first_or_create!
     end
   end
+  
+  def register(event)
+    attended_events << event
+  end
 end

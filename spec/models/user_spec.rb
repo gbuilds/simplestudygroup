@@ -65,4 +65,6 @@ describe User do
     user.register(event)
     expect(user.attended_events).to include(event)
   end
+  
+  
 end

@@ -9,7 +9,7 @@ class EventsController < ApplicationController
   def create
     @event = current_user.created_events.build(event_params)
     if @event.save
-      current_user.attended_events << @event
+      current_user.register @event
       redirect_to event_path(@event)
     else
       flash[:danger] = "Something went wrong"
