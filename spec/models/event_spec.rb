@@ -2,7 +2,7 @@ require 'rails_helper'
 
 describe Event do
   
-  it "is valid with a title, description, start and end datetime" do
+  it "has a valid factory" do
     event = Event.new(title: "Event title",
       description: "this is the event",
       start_time: Time.now + 2.hours,

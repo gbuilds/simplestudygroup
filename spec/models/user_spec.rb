@@ -59,5 +59,10 @@ describe User do
     expect(user.full_name).to eq "Jeff Bridges"    
   end
   
-  
+  it "registers for an event" do
+    user = create(:user)
+    event = create(:event)
+    user.register(event)
+    expect(user.attended_events).to include(event)
+  end
 end
