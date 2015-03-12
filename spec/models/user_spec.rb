@@ -59,4 +59,5 @@ describe User do
     expect(user.full_name).to eq "Jeff Bridges"    
   end
   
+  
 end
