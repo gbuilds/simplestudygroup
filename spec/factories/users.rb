@@ -1,11 +1,10 @@
 FactoryGirl.define do
   factory :user do
-    first_name "Jeff"
-    last_name  "Bridges"
+    first_name { Faker::Name.first_name }
+    last_name  { Faker::Name.last_name }
     password   "password"
     password_confirmation "password"
-    city_id    1
-    description "I'm a test user named Jeff. I'm interested in breaking things."
-    sequence(:email) { |n| "jeffbridges#{n}@example.com" }
+    association :city
+    email { Faker::Internet.email }
   end
 end
