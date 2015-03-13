@@ -20,7 +20,7 @@ class Event < ActiveRecord::Base
     Tag.find_by_name!(name.downcase).events
   end
   
-  # Returns a string of the tags for a user
+  # Returns a string of the tags for an event
   def tag_list
     tags.map(&:name).join(", ")
   end

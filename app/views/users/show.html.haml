@@ -17,9 +17,9 @@
 %ul
   - @user.attended_events.each do |event|
     %li
-      = event.title
+      = link_to event.title, event_path(event)
 %h5 Created Events:
 %ul
   - @user.created_events.each do |event|
     %li
-      = event.title
+      = link_to event.title, event_path(event)
