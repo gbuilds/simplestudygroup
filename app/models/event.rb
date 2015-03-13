@@ -17,7 +17,7 @@ class Event < ActiveRecord::Base
   
   # Return the Events with a specific tag
   def self.tagged_with(name)
-    Tag.find_by_name!(name.downcase.titleize).events
+    Tag.find_by_name!(name.downcase).events
   end
   
   # Returns a string of the tags for a user
@@ -28,7 +28,7 @@ class Event < ActiveRecord::Base
   # Takes a comma-separated string and sets Event tags
   def tag_list=(names)
     self.tags = names.split(", ").map do |n|
-      Tag.where(name: n.strip.downcase.titleize).first_or_create!
+      Tag.where(name: n.strip.downcase).first_or_create!
     end
   end
   

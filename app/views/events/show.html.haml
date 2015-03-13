@@ -13,39 +13,39 @@
   = @event.city.name
 %h5
   Tags:
-  = raw @event.tags.map(&:name).map { |t| link_to t, events_path(:tag => t) }.join(', ')
+  = raw @event.tags.map(&:name).map { |t| link_to t, events_path(:tag => t), class: "bg-info" }.join(', ')
 
-%p Are you going?
+%h3
+- if @attendees.any?
+  %p
+    There are 
+    = @attendees.count
+    registered attendees:
+    - @attendees.each do |a|
+      = a.full_name
+- else
+  %p No one is registered for this event yet
 
-= form_for([@event, @attendance], url: :attendances, method: :post) do |f|
-  = f.hidden_field :event_id, value: @event.id
-  = f.submit "Attending"
-  
-= form_for([@event, @attendance], url: :attendance, method: :delete) do |f|
-  = f.hidden_field :event_id, value: @event.id
-  = f.submit "Not Attending"
-  
+%p
+  Are you going?
+%p
+  = form_for([@event, @attendance], url: :attendances, method: :post) do |f|
+    = f.hidden_field :event_id, value: @event.id
+    = f.submit "Attending", class: "btn btn-primary btn-xs"
+  = form_for([@event, @attendance], url: :attendance, method: :delete) do |f|
+    = f.hidden_field :event_id, value: @event.id
+    = f.submit "Not Attending", class: "btn btn-primary btn-xs"
+
   
 = form_for ([@event, current_user.comments.build]) do |f|
-  = f.label :body, "Comments:"
-  </br>
   = f.text_area :body, placeholder: "Your comment..."
   </br>
-  = f.submit "Submit"
+  = f.submit "Add comment"
   
+%h3 Comments:
+
 - @event.comments.each do |comment|
   %div
   = comment.body
   by
   = comment.user.first_name
-
-- if @attendees.any?
-  %p
-    There are 
-    = @attendees.count
-    registered attendees.
-  - @attendees.each do |a|
-    %div
-    = a.full_name
-- else
-  %p No one is registered for this event yet

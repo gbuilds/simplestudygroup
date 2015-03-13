@@ -7,4 +7,7 @@
     \-
     = user.city.name
     \-
-    = link_to "See Profile", user_path(user)
+    = link_to "Profile", user_path(user)
+  %h5
+    \ Tags:
+    = raw user.tags.map(&:name).map { |t| link_to t, users_path(:tag => t), class: "bg-info" }.join(', ')

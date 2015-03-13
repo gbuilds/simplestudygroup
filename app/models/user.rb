@@ -24,7 +24,7 @@ class User < ActiveRecord::Base
   
   # Return the Users with a specific tag
   def self.tagged_with(name)
-    Tag.find_by_name!(name.downcase.titleize).users
+    Tag.find_by_name!(name.downcase).users
   end
   
   # Returns a string of the tags for a user
@@ -35,7 +35,7 @@ class User < ActiveRecord::Base
   # Takes a comma-separated string and sets User tags
   def tag_list=(names)
     self.tags = names.split(", ").map do |n|
-      Tag.where(name: n.strip.downcase.titleize).first_or_create!
+      Tag.where(name: n.strip.downcase).first_or_create!
     end
   end
   

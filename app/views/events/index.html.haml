@@ -9,7 +9,7 @@
     \-
     = link_to "See Event", event_path(event)
   %h5
-    = raw event.tags.map(&:name).map { |t| link_to t, events_path(:tag => t) }.join(', ')
+    = raw event.tags.map(&:name).map { |t| link_to t, events_path(:tag => t), class: "bg-info" }.join(', ')
   %p
     Start:
     = event.start_time
