@@ -39,10 +39,13 @@ class EventsController < ApplicationController
   end
   
   def index
+    # Show list of events in user's city with tag
     if params[:tag]
-      @events = Event.tagged_with(params[:tag])
+      events = Event.tagged_with(params[:tag])
+      @events = events.select { |e| e.city_id == current_user.city_id }
+    # Otherwise show list of all events in users's city
     else
-      @events = Event.all
+      @events = Event.where(city_id: current_user.city_id)
     end
   end
   

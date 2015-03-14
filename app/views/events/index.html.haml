@@ -11,11 +11,8 @@
     = event.city.name
     \-
     = link_to "See Event", event_path(event)
+  %h6
+    = event.pretty_time
   %h5
     = raw event.tags.map(&:name).map { |t| link_to t, events_path(:tag => t), class: "bg-info" }.join(', ')
-  %p
-    Start:
-    = event.start_time
-    End:
-    = event.end_time
   

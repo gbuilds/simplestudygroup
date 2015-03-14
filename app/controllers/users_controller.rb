@@ -5,7 +5,8 @@ class UsersController < ApplicationController
   
   def index
     if params[:tag]
-      @users = User.tagged_with(params[:tag])
+      users = User.tagged_with(params[:tag])
+      @users = users.select {|u| u.city_id == current_user.city_id }
     else
       @users = User.where(city: current_user.city)
     end

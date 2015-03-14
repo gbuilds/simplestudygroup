@@ -1,9 +1,9 @@
 %h1
   = gravatar_for(@user)
   = @user.full_name
-= link_to "Edit my profile", edit_user_path(current_user)
-%h5 Description:
-%p
+- if current_user? @user
+  = link_to "Edit my profile", edit_user_path(current_user)
+%h4 
   = @user.description
 %h5
   Tagged Interests:

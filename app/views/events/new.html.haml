@@ -1,17 +1,17 @@
-%h3 Share your event:
+%h3 What are you working on?
 
 = form_for(@event) do |f|
- = f.label :title, "What's the title of your study session?"
+ = f.label :title
  </br>
- = f.text_field :title
+ = f.text_field :title, size: "50", placeholder: "What's the title of your event?"
  </br>
- = f.label :description, "Provide a description for people who want to join"
+ = f.label :description, "Description"
  </br>
- = f.text_area :description, size: "50x2"
+ = f.text_area :description, size: "50x2", placeholder: "Who? What? Where? Add a quick a description for people to join you"
  </br>
- = f.label :tag_list, "Tags (separated by commas)"
+ = f.label :tag_list, "Tags"
  </br>
- = f.text_field :tag_list
+ = f.text_field :tag_list, size: "50", placeholder: "Add tags (separated by commas)"
  </br>
  = f.label :start_time
  = f.datetime_select :start_time, ampm: true, default: Time.now

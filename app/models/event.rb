@@ -32,4 +32,15 @@ class Event < ActiveRecord::Base
     end
   end
   
+  # Better looking display of start time
+  def pretty_time
+    t = self.start_time
+    t.strftime("%a, %b %e, %l:%M %p")
+  end
+  
+  # Better looking display of start-end time
+  def pretty_time_range
+    self.start_time.strftime("%a, %b %e, %Y from %l:%M %p to") + self.end_time.strftime("%l:%M %p")
+  end
+  
 end
