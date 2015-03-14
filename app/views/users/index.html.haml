@@ -1,8 +1,12 @@
 %h1 
   Users
+%h5 
+  Filter by my tags:
+  = raw current_user.tags.map(&:name).map { |t| link_to t, users_path(:tag => t), class: "bg-info" }.join(', ')
+
 - @users.each do |user|
   %h4
-    = gravatar_for(user, size: 25)
+    = gravatar_for(user, size: 40)
     = user.full_name
     \-
     = user.city.name

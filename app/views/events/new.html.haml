@@ -1,13 +1,13 @@
-%h4 Create an Event:
+%h3 Share your event:
 
 = form_for(@event) do |f|
- = f.label :title
+ = f.label :title, "What's the title of your study session?"
  </br>
  = f.text_field :title
  </br>
- = f.label :description
+ = f.label :description, "Provide a description for people who want to join"
  </br>
- = f.text_area :description
+ = f.text_area :description, size: "50x2"
  </br>
  = f.label :tag_list, "Tags (separated by commas)"
  </br>
@@ -19,4 +19,4 @@
  = f.label :end_time
  = f.datetime_select :end_time, ampm: true, default: Time.now, start_year: Time.now.year
  </br>
- = f.submit
+ = f.submit "Create it", class: "btn btn-sm btn-primary"

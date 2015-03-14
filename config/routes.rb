@@ -1,6 +1,7 @@
 Rails.application.routes.draw do
   devise_for :users
   root 'static_pages#home'
+  get 'about' => 'static_pages#about'
   resources :users
   resources :events do
     resources :comments

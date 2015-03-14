@@ -1,5 +1,8 @@
 %h1 Events
-= link_to "Create an Event", new_event_path
+%h5 
+  Filter by my tags:
+  = raw current_user.tags.map(&:name).map { |t| link_to t, events_path(:tag => t), class: "bg-info" }.join(', ')
+= link_to "Create an Event", new_event_path, class: "btn btn-sm btn-primary"
 
 - @events.each do |event|
   %h4
