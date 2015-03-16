@@ -35,7 +35,7 @@ describe Event do
   end
   
   context "#past_events" do
-    it "returns a list of past events" do
+    it "returns past events" do
       past_event = create(:event, start_time: 24.hours.ago, end_time: 25.hours.ago)
       other_event = create(:event, start_time: 24.hours.ago, end_time: 25.hours.ago)
       past_events = expect(Event.past_events).to eq [past_event, other_event]
@@ -45,7 +45,21 @@ describe Event do
       current_event = create(:event, start_time: Time.now + 2.hours, end_time: Time.now + 3.hours)
       expect(Event.past_events).to_not include current_event
     end
-    
+  end
+  
+  context "#upcoming_events" do
+    it "returns current and upcoming events" do
+      current_event = create(:event, start_time: Time.now + 1.hours)
+      upcoming_event = create(:event)
+      past_event = create(:event, start_time: 24.hours.ago, end_time: 25.hours.ago)
+      expect(Event.upcoming_events).to eq [current_event, upcoming_event]
+    end
+    it "doesn't return past events" do
+      current_event = create(:event, start_time: Time.now)
+      other_event = create(:event)
+      past_event = create(:event, start_time: 24.hours.ago, end_time: 25.hours.ago)
+      expect(Event.upcoming_events).to_not include past_event
+    end
   end
   
 end
