@@ -39,6 +39,7 @@ class EventsController < ApplicationController
   end
   
   def index
+    @current_city = City.find(current_user.city_id)
     # Show list of events in user's city with tag
     if params[:tag]
       events = Event.tagged_with(params[:tag])

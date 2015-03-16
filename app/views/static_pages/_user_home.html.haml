@@ -3,7 +3,10 @@
 = link_to "User interests", users_path, class: "btn btn-primary"
 
 %h5
-  My tags:
-  = raw current_user.tags.map(&:name).map { |t| link_to t, users_path(:tag => t), class: "bg-info" }.join(', ')
+  - if current_user.no_tags?
+    = link_to "Add interest tags so people interested in the same stuff can find you", edit_user_path(current_user), class: "bg-warning"
+  - else
+    My tags:
+    = raw current_user.tags.map(&:name).map { |t| link_to t, users_path(:tag => t), class: "bg-info" }.join(', ')
   
 %h1 Feed

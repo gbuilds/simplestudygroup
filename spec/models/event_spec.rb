@@ -34,4 +34,18 @@ describe Event do
     expect(event.errors[:end_time]).to include("can't be blank")
   end
   
+  context "#past_events" do
+    it "returns a list of past events" do
+      past_event = create(:event, start_time: 24.hours.ago, end_time: 25.hours.ago)
+      other_event = create(:event, start_time: 24.hours.ago, end_time: 25.hours.ago)
+      past_events = expect(Event.past_events).to eq [past_event, other_event]
+    end
+    
+    it "doesn't return events that are still upcoming" do
+      current_event = create(:event, start_time: Time.now + 2.hours, end_time: Time.now + 3.hours)
+      expect(Event.past_events).to_not include current_event
+    end
+    
+  end
+  
 end

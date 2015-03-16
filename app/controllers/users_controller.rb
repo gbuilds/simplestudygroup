@@ -4,6 +4,7 @@ class UsersController < ApplicationController
   before_action :correct_user, only: [:edit, :update, :destroy]
   
   def index
+    @current_city = City.find(current_user.city_id)
     if params[:tag]
       users = User.tagged_with(params[:tag])
       @users = users.select {|u| u.city_id == current_user.city_id }

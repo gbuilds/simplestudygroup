@@ -1,7 +1,12 @@
-%h1 Events
+%h1 
+  Events in
+  = @current_city.name
 %h5 
-  Filter by my tags:
-  = raw current_user.tags.map(&:name).map { |t| link_to t, events_path(:tag => t), class: "bg-info" }.join(', ')
+  - if current_user.no_tags?
+    = link_to "Add interest tags so people interested in the same stuff can find you", edit_user_path(current_user), class: "bg-warning"
+  - else
+    Filter by my tags:
+    = raw current_user.tags.map(&:name).map { |t| link_to t, events_path(:tag => t), class: "bg-info" }.join(', ')
 
 - @events.each do |event|
   %h4
