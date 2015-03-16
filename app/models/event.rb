@@ -43,4 +43,8 @@ class Event < ActiveRecord::Base
     self.start_time.strftime("%a, %b %e, %Y from %l:%M %p to") + self.end_time.strftime("%l:%M %p")
   end
   
+  def self.past_events
+    where("start_time <= ?", Time.now)
+  end
+  
 end
