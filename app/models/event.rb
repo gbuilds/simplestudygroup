@@ -40,7 +40,7 @@ class Event < ActiveRecord::Base
   
   # Better looking display of start-end time
   def pretty_time_range
-    self.start_time.strftime("%a, %b %e, %Y from %l:%M %p to") + self.end_time.strftime("%l:%M %p")
+    self.start_time.strftime("%a, %b %e, %Y from %l:%M %p to") + self.end_time.strftime(" %l:%M %p")
   end
   
   def self.past_events

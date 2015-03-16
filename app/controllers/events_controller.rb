@@ -42,11 +42,11 @@ class EventsController < ApplicationController
     @current_city = City.find(current_user.city_id)
     # Show list of events in user's city with tag
     if params[:tag]
-      events = Event.tagged_with(params[:tag])
+      events = Event.tagged_with(params[:tag]).upcoming_events
       @events = events.select { |e| e.city_id == current_user.city_id }
     # Otherwise show list of all events in users's city
     else
-      @events = Event.where(city_id: current_user.city_id)
+      @events = Event.where(city_id: current_user.city_id).upcoming_events
     end
   end
   

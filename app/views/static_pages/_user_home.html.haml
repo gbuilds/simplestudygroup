@@ -1,7 +1,3 @@
-= link_to "I'm studying", new_event_path, class: "btn btn-primary"
-= link_to "Events now", events_path, class: "btn btn-primary"
-= link_to "User interests", users_path, class: "btn btn-primary"
-
 %h5
   - if current_user.no_tags?
     = link_to "Add interest tags so people interested in the same stuff can find you", edit_user_path(current_user), class: "bg-warning"
