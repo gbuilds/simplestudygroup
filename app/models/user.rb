@@ -42,4 +42,8 @@ class User < ActiveRecord::Base
   def register(event)
     attended_events << event
   end
+  
+  def no_tags?
+    self.tags.blank?
+  end
 end
