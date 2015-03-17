@@ -1,4 +1,5 @@
 class AttendancesController < ApplicationController
+  before_action :logged_in_user
   
   def create
     @event = Event.find(params[:attendance][:event_id])
@@ -25,6 +26,15 @@ class AttendancesController < ApplicationController
     @attendance.destroy
     flash[:success] = "Deleted your attendance"
     redirect_to event_path(@event)
+  end
+  
+  private
+  
+  def logged_in_user
+    unless user_signed_in?
+      flash[:warning] = "You are not signed in."
+      redirect_to new_user_session_path
+    end
   end
   
 end

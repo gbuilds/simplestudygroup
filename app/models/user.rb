@@ -11,11 +11,20 @@ class User < ActiveRecord::Base
   belongs_to :city
   
   has_many :comments, dependent: :destroy
+  
   has_many :created_events, class_name: "Event", foreign_key: "creator_id"
+  
   has_many :attendances, dependent: :destroy
   has_many :attended_events, class_name: "Event", through: :attendances, source: :event
+  
   has_many :taggings, as: :taggable
   has_many :tags, through: :taggings
+  
+  has_many :sent_frequests, class_name: "FriendshipRequest", foreign_key: "sender_id"
+  has_many :received_frequests, class_name: "FriendshipRequest", foreign_key: "receiver_id"
+  has_many :friendships
+  has_many :friends, class_name: "User", through: :friendships, source: :user
+  
   
   # Returns the joined first and last_name for a User
   def full_name
@@ -46,4 +55,11 @@ class User < ActiveRecord::Base
   def no_tags?
     self.tags.blank?
   end
+  
+  def request_friendship(user)
+    sender_id = self.id
+    receiver_id = user.id
+    self.sent_frequests.create(sender_id: sender_id, receiver_id: receiver_id, status: "pending")
+  end
+  
 end

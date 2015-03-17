@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150310181912) do
+ActiveRecord::Schema.define(version: 20150317172134) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -56,6 +56,27 @@ ActiveRecord::Schema.define(version: 20150310181912) do
 
   add_index "events", ["city_id"], name: "index_events_on_city_id", using: :btree
   add_index "events", ["creator_id"], name: "index_events_on_creator_id", using: :btree
+
+  create_table "friendship_requests", force: true do |t|
+    t.integer  "sender_id"
+    t.integer  "receiver_id"
+    t.string   "status"
+    t.datetime "created_at",  null: false
+    t.datetime "updated_at",  null: false
+  end
+
+  add_index "friendship_requests", ["receiver_id"], name: "index_friendship_requests_on_receiver_id", using: :btree
+  add_index "friendship_requests", ["sender_id"], name: "index_friendship_requests_on_sender_id", using: :btree
+
+  create_table "friendships", force: true do |t|
+    t.integer  "user_id"
+    t.integer  "friend_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  add_index "friendships", ["friend_id"], name: "index_friendships_on_friend_id", using: :btree
+  add_index "friendships", ["user_id"], name: "index_friendships_on_user_id", using: :btree
 
   create_table "taggings", force: true do |t|
     t.integer  "tag_id"

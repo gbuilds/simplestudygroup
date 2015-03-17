@@ -9,4 +9,5 @@ Rails.application.routes.draw do
   get 'events/:tag', to: 'event#index'
   get 'users/:tag', to: 'users#index'
   resources :attendances, only: [:create, :destroy]
+  resources :friendship_requests, only: [:create, :update, :destroy]
 end
