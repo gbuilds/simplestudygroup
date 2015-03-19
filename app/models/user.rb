@@ -22,8 +22,9 @@ class User < ActiveRecord::Base
   
   has_many :sent_frequests, class_name: "FriendshipRequest", foreign_key: "sender_id"
   has_many :received_frequests, class_name: "FriendshipRequest", foreign_key: "receiver_id"
-  has_many :friendships
-  has_many :friends, class_name: "User", through: :friendships, source: :user
+  
+  has_many :friendships, foreign_key: "user_id", class_name: "Friendship"
+  has_many :friends, through: :friendships
   
   
   # Returns the joined first and last_name for a User
@@ -56,10 +57,13 @@ class User < ActiveRecord::Base
     self.tags.blank?
   end
   
-  def request_friendship(user)
-    sender_id = self.id
-    receiver_id = user.id
-    self.sent_frequests.create(sender_id: sender_id, receiver_id: receiver_id, status: "pending")
+  def send_friendship_request(user)
+    self.sent_frequests.create(sender_id: self.id, receiver_id: user.id, status: "pending")
+  end
+  
+  def build_friendships(user)
+    Friendship.create(user_id: self.id, friend_id: user.id)
+    Friendship.create(user_id: user.id, friend_id: self.id)
   end
   
 end

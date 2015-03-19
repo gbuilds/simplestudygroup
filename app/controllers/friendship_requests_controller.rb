@@ -3,12 +3,20 @@ class FriendshipRequestsController < ApplicationController
   
   def create
     user = User.find(params[:receiver_id])
-    current_user.request_friendship(user)
+    current_user.send_friendship_request(user)
     flash[:success] = "Friendship request sent"
     redirect_to user
   end
   
   def update
+    # First, find the friendship request
+    @friendship_request = FriendshipRequest.where(receiver_id: current_user.id, sender_id: params[:sender_id])
+    if params[:status] = "accepted"
+      @friendship_request.accept
+    elsif params[:status] = "declined"
+      @friendship_request.decline
+    end
+    redirect_to user_path(current_user)
   end
   
   private

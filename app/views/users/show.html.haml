@@ -4,9 +4,22 @@
 - if current_user? @user
   = link_to "Edit my profile", edit_user_path(current_user)
 - else
-  = link_to "Add as Connection", friendship_requests_path(receiver_id: @user.id), method: :post 
+  = link_to "Add as Connection", friendship_requests_path(receiver_id: @user.id), method: :post
 %h4 
   = @user.description
+
+- if @user.received_frequests.any?
+  = pluralize(@user.received_frequests.count, "connection request")
+  from:
+  - @user.received_frequests.each do |req|
+    %p
+      = req.sending_user.full_name
+      = link_to "Confirm", friendship_request_path(req, method: :patch, status: "accepted")
+      = link_to "Delete", friendship_request_path(req, method: :patch, status: "declined")
+- else
+  %p No pending friend requests
+    
+
 %h5
   Tagged Interests:
   = raw @user.tags.map(&:name).map { |t| link_to t, users_path(:tag => t), class: "bg-info" }.join(', ')
