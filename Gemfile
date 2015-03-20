@@ -5,10 +5,7 @@ gem 'rails', '4.2.0.rc2'
 gem 'pg'
 gem 'devise'
 gem 'haml'
-
-# For bootstrap datetime picker
-# gem 'momentjs-rails', '>= 2.9.0'
-# gem 'bootstrap3-datetimepicker-rails', '~> 4.7.14'
+gem 'pry'
 
 # Bootstrap
 gem 'bootstrap-sass', '~> 3.3.3'

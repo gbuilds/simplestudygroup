@@ -49,21 +49,34 @@ class User < ActiveRecord::Base
     end
   end
   
+  # Register for an event
   def register(event)
     attended_events << event
   end
   
+  # Return true if user doesn't have any current tags/interests
   def no_tags?
     self.tags.blank?
   end
   
+  # Send a friendship request to another user
   def send_friendship_request(user)
     self.sent_frequests.create(sender_id: self.id, receiver_id: user.id, status: "pending")
   end
   
+  # Set up friendship and complementary-opposite friendship for user and friend
   def build_friendships(user)
     Friendship.create(user_id: self.id, friend_id: user.id)
     Friendship.create(user_id: user.id, friend_id: self.id)
   end
   
+  # Return true if other user is friend
+  def friends?(other_user)
+    self.friends.include? other_user
+  end
+  
+  def pending_frequests
+    self.received_frequests.select { |r| r.status == "pending"}
+    # self.received_frequests.where(status: "pending")
+  end
 end

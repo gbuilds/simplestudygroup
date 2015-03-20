@@ -1,0 +1,24 @@
+/ if User's profile page and friend requests
+- if current_user?(@user)
+  - if @user.pending_frequests.any?
+    = pluralize(@user.pending_frequests.count, "connection request")
+    from:
+    - @user.pending_frequests.each do |req|
+      %p
+        = req.sending_user.full_name
+        = link_to "Confirm", friendship_request_path(req), method: :patch,  status: "accepted"
+        = link_to "Delete", friendship_request_path(req), method: :patch, status: "declined"
+  
+  / If it's someone else's profile page
+- elsif !current_user? @user
+  - if current_user.friends?(@user)
+    %p 
+      Friends with
+      = @user.first_name
+  - elsif FriendshipRequest.requestable?(current_user, @user)
+    = link_to "Add as Connection", friendship_requests_path(receiver_id: @user.id), method: :post
+  - else !FriendshipRequest.requestable?(current_user, @user)
+    %p (Pending friend request)
+- else
+  %p beats me
+  

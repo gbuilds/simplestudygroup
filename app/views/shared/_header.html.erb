@@ -17,6 +17,9 @@
 <!--         <li class="active"><a href="#">Studying Now<span class="sr-only">(current)</span></a></li> -->
         <li><%= link_to "Events", events_path %></li>
         <li><%= link_to "Users", users_path %></li>
+        <% if user_signed_in? %>
+        <li><%= link_to "My Profile", user_path(current_user) %></li>
+        <% end %>
         <li><%= link_to "I'm studying", new_event_path %></li>
       </ul>
       <form class="navbar-form navbar-left" role="search">

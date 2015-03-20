@@ -2,8 +2,8 @@
 
 FactoryGirl.define do
   factory :friendship_request do
-    sender nil
-    receiver nil
-    status "MyString"
+    sender_id 1
+    receiver_id 2
+    status "pending"
   end
 end

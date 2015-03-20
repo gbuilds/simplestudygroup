@@ -1,24 +1,18 @@
+/ Heading
+
 %h1
   = gravatar_for(@user)
   = @user.full_name
 - if current_user? @user
   = link_to "Edit my profile", edit_user_path(current_user)
-- else
-  = link_to "Add as Connection", friendship_requests_path(receiver_id: @user.id), method: :post
 %h4 
   = @user.description
 
-- if @user.received_frequests.any?
-  = pluralize(@user.received_frequests.count, "connection request")
-  from:
-  - @user.received_frequests.each do |req|
-    %p
-      = req.sending_user.full_name
-      = link_to "Confirm", friendship_request_path(req, method: :patch, status: "accepted")
-      = link_to "Delete", friendship_request_path(req, method: :patch, status: "declined")
-- else
-  %p No pending friend requests
+/ Friend Requests
+
+= render partial: 'shared/friendship_requests'
     
+/ Details
 
 %h5
   Tagged Interests:
@@ -26,8 +20,14 @@
 %h5 
   Location:
   = @user.city.name
-%h5 Friends:
+%p 
+  Friends:  
+  - @friends.each do |friend|
+    = link_to friend.full_name, user_path(friend)
 %h5 Contact Information:
+
+/ Events for User
+
 %h5 Attending Events:
 %ul
   - @user.attended_events.each do |event|

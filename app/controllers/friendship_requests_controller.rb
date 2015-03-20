@@ -2,21 +2,28 @@ class FriendshipRequestsController < ApplicationController
   before_action :logged_in_user
   
   def create
-    user = User.find(params[:receiver_id])
-    current_user.send_friendship_request(user)
-    flash[:success] = "Friendship request sent"
-    redirect_to user
+    user = User.find_by(id: params[:receiver_id])
+    if FriendshipRequest.requestable?(current_user, user)
+      current_user.send_friendship_request(user)
+      flash[:success] = "Friendship request sent"
+      redirect_to user
+    else
+      flash[:danger] = "Unable to request friendship. You may already be friends or have a pending request."
+      redirect_to user
+    end
+
   end
   
   def update
-    # First, find the friendship request
-    @friendship_request = FriendshipRequest.where(receiver_id: current_user.id, sender_id: params[:sender_id])
+    @friendship_request = FriendshipRequest.find_by(id: params[:id])
+    sender = @friendship_request.sender
     if params[:status] = "accepted"
       @friendship_request.accept
+      redirect_to user_path(sender)
     elsif params[:status] = "declined"
       @friendship_request.decline
+      redirect_to user_path(sender)
     end
-    redirect_to user_path(current_user)
   end
   
   private
