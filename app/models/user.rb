@@ -34,7 +34,7 @@ class User < ActiveRecord::Base
   
   # Return the Users with a specific tag
   def self.tagged_with(name)
-    Tag.find_by_name!(name.downcase).users
+    Tag.find_by(name: name.downcase).users
   end
   
   # Returns a string of the tags for a user
