@@ -17,6 +17,6 @@
       = @user.first_name
   - elsif FriendshipRequest.requestable?(current_user, @user)
     = link_to "Add as Connection", friendship_requests_path(receiver_id: @user.id), method: :post
-  - else !FriendshipRequest.requestable?(current_user, @user)
+  - else
     %p (Pending friend request)
   
