@@ -10,7 +10,7 @@
         = link_to "Delete", friendship_request_path(req), method: :patch, status: "declined"
   
   / If it's someone else's profile page
-- elsif !current_user? @user
+- else
   - if current_user.friends?(@user)
     %p 
       Friends with
@@ -19,6 +19,4 @@
     = link_to "Add as Connection", friendship_requests_path(receiver_id: @user.id), method: :post
   - else !FriendshipRequest.requestable?(current_user, @user)
     %p (Pending friend request)
-- else
-  %p beats me
   

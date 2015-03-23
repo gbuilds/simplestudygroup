@@ -4,5 +4,3 @@
   - else
     My tags:
     = raw current_user.tags.map(&:name).map { |t| link_to t, users_path(:tag => t), class: "bg-info" }.join(', ')
-  
-%h1 Feed
