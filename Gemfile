@@ -7,6 +7,7 @@ gem 'devise'
 gem 'haml'
 gem 'pry'
 gem 'figaro'
+gem 'puma'
 
 # Bootstrap
 gem 'bootstrap-sass', '~> 3.3.3'
