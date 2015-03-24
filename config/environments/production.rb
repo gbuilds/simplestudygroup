@@ -5,7 +5,6 @@ Rails.application.configure do
   config.cache_classes = true
   
   # Configure for Devise
-  config.action_mailer.default_url_options = { host: host }
   
   # Eager load code on boot. This eager loads most of Rails and
   # your application in memory, allowing both threaded web servers
@@ -65,9 +64,9 @@ Rails.application.configure do
   # Ignore bad email addresses and do not raise email delivery errors.
   # Set this to true and configure the email server for immediate delivery to raise delivery errors.
   config.action_mailer.raise_delivery_errors = true
-  
   config.action_mailer.delivery_method = :smtp
   host = "getstudygroup.herokuapp.com"
+  config.action_mailer.default_url_options = { host: host }
   ActionMailer::Base.smtp_settings = {
     :address        => 'smtp.sendgrid.net',
     :port           => '587',
