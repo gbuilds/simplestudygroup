@@ -19,6 +19,11 @@
   </div>
 
   <div class="field">
+    <%= f.label :tag_list %><br />
+    <%= f.text_field :tag_list, autofocus: true, size: "60x2" %>
+  </div>
+
+  <div class="field">
     <%= f.label :description %></br>
 <%= f.text_area :description, autofocus: true, placeholder: "Share a few sentences about yourself. For example, \"I am a grizzly bear interested in learning more about salmon smoking and fish farming techniques.\"", size: "60x5"  %>
   </div>
