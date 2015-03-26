@@ -48,7 +48,7 @@ class Event < ActiveRecord::Base
   end
   
   def self.upcoming_events
-    where("start_time > ?", Time.now)
+    where("start_time >= ?", Time.now)
   end
   
 end

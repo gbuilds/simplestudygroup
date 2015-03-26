@@ -79,4 +79,11 @@ class User < ActiveRecord::Base
     self.received_frequests.select { |r| r.status == "pending"}
     # self.received_frequests.where(status: "pending")
   end
+  
+  # Returns a users feed
+  def feed
+    # creator id is within user.friends' ids
+    friend_ids = self.friends.map { |f| f.id }
+    Event.where({ creator_id: friend_ids })
+  end
 end
