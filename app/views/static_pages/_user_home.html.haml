@@ -1,7 +1,28 @@
 - if current_user.no_tags?
   %h4
-    = link_to "To get started, just add interest tags so people with the same interests can find you", edit_user_path(current_user), class: "bg-warning"
+    = link_to "To get started, ust add interest tags so people with the same interests can find you", edit_user_path(current_user), class: "bg-warning"
 - else
   %h5
-    My tags:
+    Find users by tag:
     = raw current_user.tags.map(&:name).map { |t| link_to t, users_path(:tag => t), class: "bg-info" }.join(', ')
+
+%h1 Events
+- if @feed_items.blank?
+  %h4
+    Check out who's studying in
+    = current_user.city.name
+  %h4
+    %ul
+      %li 
+        = link_to "Users", users_path
+      %li 
+        = link_to "Events", events_path 
+- else
+  - @feed_items.each do |event|
+    %h5
+      = gravatar_for(event.creator, size: 35)
+      = event.creator.full_name 
+      created
+      = link_to event.title, events_path(event)
+      \- for
+      = event.pretty_time
