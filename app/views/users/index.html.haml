@@ -1,7 +1,3 @@
-%h1 
-  Users in
-  = @current_city.name
- 
 - if current_user.no_tags?
   %h4
     = link_to "To get started, just add interest tags so people with the same interests can find you", edit_user_path(current_user), class: "bg-warning"
@@ -9,6 +5,10 @@
   %h5
     Filter by my tags:
     = raw current_user.tags.map(&:name).map { |t| link_to t, users_path(:tag => t), class: "bg-info" }.join(', ')
+
+%h1 
+  Users in
+  = @current_city.name
 
 - @users.each do |user|
   %h4
