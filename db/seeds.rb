@@ -6,4 +6,8 @@
 #   cities = City.create([{ name: 'Chicago' }, { name: 'Copenhagen' }])
 #   Mayor.create(name: 'Emanuel', city: cities.first)
 
-cities = City.create([{ name: 'Boston'}, { name: 'Seattle' }, { name: 'Chicago'}, { name: 'Buffalo' }])
+cities = City.create([
+  { name: 'Boston', time_zone: 'Eastern Time (US & Canada)'}, 
+  { name: 'Seattle', time_zone: 'Pacific Time (US & Canada)'}, 
+  { name: 'Chicago', time_zone: 'Central Time (US & Canada)'}, 
+  { name: 'Buffalo', time_zone: 'Eastern Time (US & Canada)'}])
