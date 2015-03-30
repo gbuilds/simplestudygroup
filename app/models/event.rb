@@ -4,6 +4,7 @@ class Event < ActiveRecord::Base
   validates :start_time, presence: true
   validates :end_time, presence: true
   validates_associated :city
+  validate :starts_before_end_time
   
   
   belongs_to :city

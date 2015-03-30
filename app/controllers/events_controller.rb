@@ -27,7 +27,7 @@ class EventsController < ApplicationController
       flash[:success] = "Event successfully updated"
       redirect_to @event
     else
-      flash[:danger].now = "Event failed to save"
+      flash.now[:danger] = "Event failed to save"
       render 'edit'
     end
   end
