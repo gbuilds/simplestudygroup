@@ -56,8 +56,10 @@ class Event < ActiveRecord::Base
   private
   
   def starts_before_end_time
-    if self.end_time < self.start_time
-      errors.add(:end_time, "cannot end before it starts")
+    if self.end_time && self.start_time
+      if self.end_time < self.start_time
+        errors.add(:end_time, "cannot end before it starts")
+      end
     end
   end
 end
