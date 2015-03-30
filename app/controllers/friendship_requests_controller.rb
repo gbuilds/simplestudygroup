@@ -17,10 +17,10 @@ class FriendshipRequestsController < ApplicationController
   def update
     @friendship_request = FriendshipRequest.find_by(id: params[:id])
     sender = @friendship_request.sender
-    if params[:status] = "accepted"
+    if params[:status] == "accepted"
       @friendship_request.accept
       redirect_to user_path(sender)
-    elsif params[:status] = "declined"
+    elsif params[:status] == "declined"
       @friendship_request.decline
       redirect_to user_path(sender)
     end
