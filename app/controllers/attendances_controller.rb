@@ -15,7 +15,7 @@ class AttendancesController < ApplicationController
         redirect_to event_path(@event)
       end
     else
-      flash[:danger] = "You are already registered for this event"
+      flash[:warning] = "You are already registered for this event"
       redirect_to event_path(@event)
     end
   end
@@ -23,8 +23,8 @@ class AttendancesController < ApplicationController
   def destroy
     @event = Event.find(params[:id])
     @attendance = @event.attendances.where(user_id: current_user.id).first
-    @attendance.destroy
-    flash[:success] = "Deleted your attendance"
+    @attendance.destroy if @attendance
+    flash[:success] = "You are no longer attending this event"
     redirect_to event_path(@event)
   end
   
