@@ -5,6 +5,7 @@ class Event < ActiveRecord::Base
   validates :end_time, presence: true
   validates_associated :city
   
+  
   belongs_to :city
   belongs_to :creator, class_name: "User"
   
@@ -51,4 +52,11 @@ class Event < ActiveRecord::Base
     where("start_time >= ?", Time.now)
   end
   
+  private
+  
+  def starts_before_end_time
+    if self.end_time < self.start_time
+      errors.add(:end_time, "cannot end before it starts")
+    end
+  end
 end

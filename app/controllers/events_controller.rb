@@ -12,7 +12,7 @@ class EventsController < ApplicationController
       current_user.register @event
       redirect_to event_path(@event)
     else
-      flash[:danger].now = "Something went wrong"
+      flash.now[:danger] = "Something went wrong"
       render 'new'
     end
   end
