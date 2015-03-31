@@ -13,11 +13,6 @@ class FriendshipRequest < ActiveRecord::Base
     update_attribute(:status, "declined")
   end
   
-  # Get the user who sent the request
-  def sending_user
-    User.find_by(id: self.sender_id)
-  end
-  
   # Return false unless 2 users can send each other a friend request
   def FriendshipRequest.requestable?(user, requestee)
     if user.sent_frequests.any? { |req| req.receiver == requestee }
