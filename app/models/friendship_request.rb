@@ -13,17 +13,9 @@ class FriendshipRequest < ActiveRecord::Base
     update_attribute(:status, "declined")
   end
   
-  # Return false unless 2 users can send each other a friend request
-  def FriendshipRequest.requestable?(user, requestee)
-    if user.sent_frequests.any? { |req| req.receiver == requestee }
-      return false
-    elsif user.received_frequests.any? {|req| req.sender == requestee }
-      return false
-    elsif user.friends?(requestee)
-      return false
-    else
-      true
-    end
+  # Return false if there's an existing friend request between 2 users
+  def FriendshipRequest.requestable?(user1, user2)
+    (user1.all_frequests & user2.all_frequests).none?
   end
-
+  
 end

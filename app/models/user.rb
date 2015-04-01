@@ -80,6 +80,11 @@ class User < ActiveRecord::Base
     # self.received_frequests.where(status: "pending")
   end
   
+  # all friend requests sent and received
+  def all_frequests
+    self.received_frequests + self.sent_frequests
+  end
+  
   # Returns a users feed
   def feed
     # creator id is within user.friends' ids

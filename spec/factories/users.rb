@@ -6,5 +6,6 @@ FactoryGirl.define do
     password_confirmation "password"
     association :city
     email { Faker::Internet.email }
+    description { "a"*10 }
   end
 end
