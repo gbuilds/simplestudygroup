@@ -1,5 +1,11 @@
 Rails.application.routes.draw do
-  devise_for :users, controllers: { registrations: "registrations" }
+  devise_for :users, controllers: { 
+    registrations: "registrations" 
+    }
+  devise_scope :user do
+    get '/' => 'static_pages#home'
+  end
+  
   root 'static_pages#home'
   get 'about' => 'static_pages#about'
   resources :users

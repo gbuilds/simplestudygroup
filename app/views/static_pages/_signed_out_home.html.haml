@@ -1,6 +1,55 @@
 %h2.jumbotron Self-organize your higher education through social networks.
 
 
-%p Studygroup is the social network that helps you easily find other people working on the same books, classes, courses and interests.
-%p Learn anything together. Unlimited course selection. Ultra-small "class sizes". Learn liberal arts. Or refocus your career. Shared experiences, connections and knowledge are free. College is not.
-%p Tag yourself with interests and find other people locally who want to learn the same things. Make your own group or share where and what you're studying in real time. 
+%h4 Studygroup is the social network that helps you easily find other people working on the same books, classes, courses and interests.
+%h4 Learn anything together. Unlimited course selection. Ultra-small "class sizes". Study some liberal arts. Or refocus your career. Shared experiences, connections and knowledge are free. College is not.
+%h4 Tag yourself with interests and find other people locally who want to learn the same things. Make your own group or share where and what you're studying in real time. 
+
+%h3
+  Make an account
+
+= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f|
+  = devise_error_messages!
+  
+  %div.field
+  = f.label :city_id, "City"
+  = f.select :city_id, City.all.collect {|c| [c.name, c.id]}, {}
+
+
+  %div.field
+    = f.label :email
+    = f.email_field :email, autofocus: true
+  
+  %div.field
+    = f.label :first_name, "First name"
+    = f.text_field :first_name, autofocus: true
+  %div.field
+    = f.label :last_name, "Last name"
+    = f.text_field :last_name, autofocus: true
+
+  %div.field
+    = f.label :tag_list
+    %br
+    = f.text_field :tag_list, placeholder: "e.g. web dev, japanese, financial analysis, what you're learning / interests", autofocus: true, size: "65x2"
+
+  %div.field
+    = f.label :description
+    %br
+    = f.text_area :description, autofocus: true, placeholder: "About me", size: "65x3"
+  
+  %div.field
+    = f.label :password
+    %em
+      (
+      = @minimum_password_length
+      characters minimum)
+    %br
+    = f.password_field :password, autocomplete: "off"
+
+  %div.field
+    = f.label :password_confirmation
+    %br
+    = f.password_field :password_confirmation, autocomplete: "off"
+
+  %div.actions
+    = f.submit "Sign up", class: "btn btn-lg btn-success"
