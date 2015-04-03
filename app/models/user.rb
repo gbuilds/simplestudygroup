@@ -90,6 +90,6 @@ class User < ActiveRecord::Base
     # creator id is within user.friends' ids
     ids = self.friends.map { |f| f.id }
     ids << self.id
-    Event.where({ creator_id: ids })
+    Event.where({ creator_id: ids }).order(start_time: :desc)
   end
 end
