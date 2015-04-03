@@ -85,10 +85,11 @@ class User < ActiveRecord::Base
     self.received_frequests + self.sent_frequests
   end
   
-  # Returns a users feed
+  # Returns a user's feed
   def feed
     # creator id is within user.friends' ids
-    friend_ids = self.friends.map { |f| f.id }
-    Event.where({ creator_id: friend_ids })
+    ids = self.friends.map { |f| f.id }
+    ids << self.id
+    Event.where({ creator_id: ids }).order(start_time: :desc)
   end
 end

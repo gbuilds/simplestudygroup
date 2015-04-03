@@ -65,6 +65,20 @@ describe User do
     user.register(event)
     expect(user.attended_events).to include(event)
   end
-  
+  context "#feed" do
+    it "returns a friend's events" do
+      user = create(:user)
+      friend = create(:user)
+      user.friends << friend
+      event = create(:event, creator_id: friend.id)
+      expect(user.feed).to include(event)
+    end
+    
+    it "returns a users events" do
+      user = create(:user)
+      event = create(:event, creator_id: user.id)
+      expect(user.feed).to include(event)
+    end
+  end
   
 end
