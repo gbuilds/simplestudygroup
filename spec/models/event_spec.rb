@@ -34,6 +34,14 @@ describe Event do
     expect(event.errors[:end_time]).to include("can't be blank")
   end
   
+  it "is invalid if it starts before it ends" do
+    event = build(:event, 
+      start_time: Time.now + 5.hours,
+      end_time: Time.now + 3.hours)
+    event.valid?
+    expect(event.errors[:end_time]).to include("cannot end before it starts")
+  end
+  
   context "#past_events" do
     it "returns past events" do
       past_event = create(:event, start_time: 24.hours.ago, end_time: 23.hours.ago)
