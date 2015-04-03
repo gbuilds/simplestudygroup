@@ -22,8 +22,8 @@
   = @user.city.name
 %p 
   Friends:  
-  - @friends.each do |friend|
-    = link_to friend.full_name, user_path(friend)
+  = raw @friends.map {|f| link_to f.full_name, user_path(f)}.join(', ')
+  
 %h5 Contact Information:
 
 / Events for User
