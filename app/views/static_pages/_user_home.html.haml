@@ -21,7 +21,7 @@
   - @feed_items.each do |event|
     %h5
       = gravatar_for(event.creator, size: 35)
-      = event.creator.full_name 
+      = current_user?(event.creator) ? "You" : event.creator.full_name 
       created
       = link_to event.title, event_path(event)
       \- for
