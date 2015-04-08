@@ -59,12 +59,20 @@ describe User do
     expect(user.full_name).to eq "Jeff Bridges"    
   end
   
+  it "saves name as capitalized" do
+    user = build(:user, first_name: "jeff", last_name: "BridGes")
+    user.save
+    expect(user.full_name).to eq "Jeff Bridges"
+  end
+  
   it "registers for an event" do
     user = create(:user)
     event = create(:event)
     user.register(event)
     expect(user.attended_events).to include(event)
   end
+  
+  
   context "#feed" do
     it "returns a friend's events" do
       user = create(:user)

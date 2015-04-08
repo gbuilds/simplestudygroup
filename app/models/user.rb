@@ -26,6 +26,7 @@ class User < ActiveRecord::Base
   has_many :friendships, foreign_key: "user_id", class_name: "Friendship"
   has_many :friends, through: :friendships
   
+  before_save :capitalize_name
   
   # Returns the joined first and last_name for a User
   def full_name
@@ -91,5 +92,12 @@ class User < ActiveRecord::Base
     ids = self.friends.map { |f| f.id }
     ids << self.id
     Event.where({ creator_id: ids }).order(start_time: :desc)
+  end
+  
+  private
+  
+  def capitalize_name
+    self.first_name = self.first_name.capitalize
+    self.last_name = self.last_name.capitalize
   end
 end
