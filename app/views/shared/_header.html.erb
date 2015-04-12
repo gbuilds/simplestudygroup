@@ -23,6 +23,11 @@
       </ul>
       <% if user_signed_in? %>
       <ul class="nav navbar-nav navbar-right">
+        <% if current_user.pending_frequests.any? %>
+        <li class="notifications-flag"><%= link_to friendship_requests_path, class: "notifications-flag" do %>
+    <span class="glyphicon glyphicon-comment"></span>
+           <% end %></li>
+        <% end %>
         <li><%= link_to gravatar_for(current_user, size: 20), user_path(current_user) %></li>
         <li class="dropdown">
           <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Menu <span class="caret"></span></a>

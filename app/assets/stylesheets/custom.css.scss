@@ -1,0 +1,13 @@
+@import "bootstrap-sprockets";
+@import "bootstrap";
+
+/* Fonts */
+
+  /* Notication alerts */
+.notifications-flag {
+  border-radius: 2px;
+  background-color: #def0de;
+  &:hover {
+    background-color: #addbad;
+  }
+}

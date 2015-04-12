@@ -1,12 +1,13 @@
-%h2.jumbotron Self-organize your higher education through social networks.
+%h2.jumbotron Grow your own higher education through social networks.
 
-
-%h4 Studygroup is the social network that helps you easily find other people working on the same books, classes, courses and interests.
-%h4 Learn anything together. Unlimited course selection. Ultra-small "class sizes". Study some liberal arts. Or refocus your career. Shared experiences, connections and knowledge are free. College is not.
-%h4 Tag yourself with interests and find other people locally who want to learn the same things. Make your own group or share where and what you're studying in real time. 
+%h3 How to use Studygroup:
+%h4 Tag your profile with interests and see people learning about the same subject in your area. 
+%h4 Publish where and what you're studying. Meet people to study with. Organize a class. 
+%h4 Get unlimited course selection on the internet. Get ultra-small "class sizes" locally.
+%h4 Higher education is more expensive every year. Your education is not!
 
 %h3
-  Make an account
+  Get an account
 
 = form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f|
   = devise_error_messages!
@@ -30,7 +31,7 @@
   %div.field
     = f.label :tag_list
     %br
-    = f.text_field :tag_list, placeholder: "e.g. web dev, japanese, financial analysis, what you're learning / interests", autofocus: true, size: "65x2"
+    = f.text_field :tag_list, placeholder: "e.g. web development, japanese, bioinformatics, what you're learning", autofocus: true, size: "65x2"
 
   %div.field
     = f.label :description

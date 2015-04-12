@@ -1,0 +1,17 @@
+- if @pending_requests.nil?
+  %h4
+    No pending friend requests
+    
+- else 
+  - @pending_requests.each do |friend|
+    %h4 
+      Pnding friend requests
+      = link_to .full_name
+      = link_to "Approve", "#"
+      = link_To "Decline", "#"
+
+      - @user.pending_frequests.each do |req|
+        %p
+          = req.sender.full_name
+          = link_to "Confirm", friendship_request_path(req, status: "accepted"), method: :patch
+          = link_to "Delete", friendship_request_path(req, status: "declined"), method: :patch

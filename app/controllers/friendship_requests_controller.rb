@@ -26,6 +26,10 @@ class FriendshipRequestsController < ApplicationController
     end
   end
   
+  def index
+    @friendship_requests = current_user.pending_frequests
+  end
+  
   private
   
   def logged_in_user
