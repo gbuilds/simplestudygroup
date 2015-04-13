@@ -15,7 +15,7 @@
 
 - @users.each do |user|
   %h4
-    = link_to gravatar_for(user, size: 40), user_path(user)
+    = link_to gravatar_for(user, size: 25), user_path(user)
     = user.full_name
   %h5
     = raw user.tags.map(&:name).map { |t| link_to t, users_path(:tag => t), class: "bg-info" }.join(', ')

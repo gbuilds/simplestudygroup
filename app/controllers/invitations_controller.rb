@@ -1,18 +1,18 @@
 class InvitationsController < ApplicationController
   before_action :logged_in_user
   
-  def new
-    @invitation = Invitation.new
-  end
-  
   def create
     @invitation = Invitation.new(invitation_params)
-    if @invitation.save
-      # send an email to that address
-      # redirect to somewhere  
-      # can't invite an email more than once
+    if @invitation.unsent? && @invitation.save
+      InvitationMailer.invite_email(@invitation).deliver_now
+      flash[:success] = "Invitation sent"
+      redirect_to  request.referrer
+    elsif !@invitation.unsent?
+      flash[:danger] = "Already sent an invite to this person"
+      redirect_to request.referrer
     else
       flash[:danger] = "Invitation was not sent"
+      redirect_to request.referrer
     end
   end
   
@@ -20,7 +20,7 @@ class InvitationsController < ApplicationController
   private
   
   def invitation_params
-    params.require(:invitation).permit(:email, :inviter_id)
+    params.require(:invitation).permit(:email).merge(inviter_id: current_user.id)
   end
   
   def logged_in_user
@@ -29,4 +29,5 @@ class InvitationsController < ApplicationController
       redirect_to new_user_session_path
     end
   end
+  
 end

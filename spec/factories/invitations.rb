@@ -1,8 +1,6 @@
-# Read about factories at https://github.com/thoughtbot/factory_girl
-
 FactoryGirl.define do
   factory :invitation do
-    email "MyString"
-    references ""
+    email "test@email.com"
+    inviter_id 1
   end
 end
