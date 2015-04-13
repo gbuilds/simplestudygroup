@@ -1,1 +1,1 @@
-Studygroup is a social network for group learning. It helps people connect locally with small groups of people who are studying the same thing.  I am using Postgresql, Devise, HAML, and learning to write some basic tests with Rspec, Factorygirl.
+Studygroup is a social network for group learning. It helps people connect locally with small groups of people who are studying the same thing. For a demo login you can use demo at getstudygroup.com, pw password. getstudygroup.herokuapp.com
