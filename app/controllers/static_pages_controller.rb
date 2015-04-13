@@ -6,6 +6,7 @@ class StaticPagesController < DeviseController
     if user_signed_in?
       @city = current_user.city
       @feed_items = current_user.feed
+      @invitation = Invitation.new
     else
       @minimum_password_length = resource_class.password_length.min
       @user = User.new

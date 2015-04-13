@@ -6,7 +6,10 @@
     Find users by tag:
     = raw current_user.tags.map(&:name).map { |t| link_to t, users_path(:tag => t), class: "bg-info" }.join(', ')
 
-%h1 Events
+= form_for(@invitation) do |f|
+  = f.text_field :email, placeholder: "name@email.com"
+  = f.submit "Invite a friend", class: "btn btn-success"
+
 - if @feed_items.blank?
   %h4
     Check out who's studying in

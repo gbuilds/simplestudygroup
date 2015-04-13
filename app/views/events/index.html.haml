@@ -3,25 +3,22 @@
     = link_to "To get started, just add interest tags and start finding events", edit_user_path(current_user), class: "bg-warning"
 - else
   %h5
-    Filter by my tags:
+    Events in
+    = @current_city.name
+    \- Filter:
     = raw current_user.tags.map(&:name).map { |t| link_to t, events_path(:tag => t), class: "bg-info" }.join(', ')
 
-
-%h1 
-  Events in
-  = @current_city.name
+= form_for(@invitation) do |f|
+  = f.text_field :email, placeholder: "name@email.com"
+  = f.submit "Invite a friend", class: "btn btn-success"
 
 - @events.each do |event|
+  
   %h4
-    = event.title
-    \-
-    = event.city.name
-    \-
-    = link_to "See Event", event_path(event)
-  %h6
+    %span.glyphicon.glyphicon-map-marker
+    = link_to event.title, event_path(event)
+    |
     = event.pretty_time
   %h5
     = raw event.tags.map(&:name).map { |t| link_to t, events_path(:tag => t), class: "bg-info" }.join(', ')
-    
-= link_to "Create an Event", new_event_path, class: "btn btn-sm btn-primary"
   

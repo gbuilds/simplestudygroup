@@ -3,21 +3,19 @@
     = link_to "To get started, just add interest tags so people with the same interests can find you", edit_user_path(current_user), class: "bg-warning"
 - else
   %h5
-    Filter by my tags:
+    Users in
+    = @current_city.name
+    \-
+    Filter:
     = raw current_user.tags.map(&:name).map { |t| link_to t, users_path(:tag => t), class: "bg-info" }.join(', ')
 
-%h1 
-  Users in
-  = @current_city.name
+= form_for(@invitation) do |f|
+  = f.text_field :email, placeholder: "name@email.com"
+  = f.submit "Invite a friend", class: "btn btn-success"
 
 - @users.each do |user|
   %h4
-    = gravatar_for(user, size: 40)
+    = link_to gravatar_for(user, size: 40), user_path(user)
     = user.full_name
-    \-
-    = user.city.name
-    \-
-    = link_to "Profile", user_path(user)
   %h5
-    \ Tags:
     = raw user.tags.map(&:name).map { |t| link_to t, users_path(:tag => t), class: "bg-info" }.join(', ')

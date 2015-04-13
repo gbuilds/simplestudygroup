@@ -36,9 +36,11 @@ class EventsController < ApplicationController
     @event = Event.find(params[:id])
     @attendees = @event.attendees.all
     @attendance = Attendance.new
+    @invitation = Invitation.new
   end
   
   def index
+    @invitation = Invitation.new
     @current_city = City.find(current_user.city_id)
     # Show list of events in user's city with tag
     if params[:tag]
