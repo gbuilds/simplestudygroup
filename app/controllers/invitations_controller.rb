@@ -3,7 +3,7 @@ class InvitationsController < ApplicationController
   
   def create
     @invitation = Invitation.new(invitation_params)
-    if @invitation.unsent? && @invitation.save
+    if @invitation.unsent? && @invitation.unlimited? && @invitation.save
       InvitationMailer.invite_email(@invitation).deliver_now
       flash[:success] = "Invitation sent"
       redirect_to  request.referrer
@@ -15,7 +15,6 @@ class InvitationsController < ApplicationController
       redirect_to request.referrer
     end
   end
-  
   
   private
   
