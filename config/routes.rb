@@ -16,4 +16,5 @@ Rails.application.routes.draw do
   get 'users/:tag', to: 'users#index'
   resources :attendances, only: [:create, :destroy]
   resources :friendship_requests, only: [:create, :update, :destroy, :index]
+  resources :invitations, only: [:new, :create]
 end

@@ -1,17 +1,30 @@
 %h1= @event.title
-= link_to "Edit Event", edit_event_path(@event)
-= link_to "Delete", event_path(@event), method: :delete, data: { confirm: "Are you sure you want to delete this event. You can change your registration status."}
+%small
+  = @event.city.name
+  - if @event.creator == current_user
+    = link_to "Edit Event", edit_event_path(@event)
+    = link_to "Delete", event_path(@event), method: :delete, data: { confirm: "Are you sure you want to delete this event?"}
+    
+= form_for(@invitation) do |f|
+  = f.text_field :email, placeholder: "name@email.com"
+  = f.submit "Invite a friend", class: "btn btn-success"
+  
 %h4
   = simple_format @event.description
-%p.strong
+%h5
   = @event.pretty_time_range
 %h5
-  Location:
-  = @event.city.name
-%h5
-  Tags:
   = raw @event.tags.map(&:name).map { |t| link_to t, events_path(:tag => t), class: "bg-info" }.join(', ')
 
+%h4
+  = form_for([@event, @attendance], url: :attendances, method: :post) do |f|
+    = f.hidden_field :event_id, value: @event.id
+    %span#event-attendance-btn-span
+      = f.submit "Attending", class: "btn btn-xs"
+  = form_for([@event, @attendance], url: :attendance, method: :delete) do |f|
+    = f.hidden_field :event_id, value: @event.id
+    %span
+      = f.submit "Not Attending", class: "btn btn-xs"
 %h3
 - if @attendees.any?
   %p 
@@ -21,22 +34,6 @@
 - else
   %p No one is registered for this event yet
 
-%p
-  Are you going?
-%p
-  = form_for([@event, @attendance], url: :attendances, method: :post) do |f|
-    = f.hidden_field :event_id, value: @event.id
-    = f.submit "Attending", class: "btn btn-primary btn-xs"
-  = form_for([@event, @attendance], url: :attendance, method: :delete) do |f|
-    = f.hidden_field :event_id, value: @event.id
-    = f.submit "Not Attending", class: "btn btn-primary btn-xs"
-
-  
-= form_for ([@event, current_user.comments.build]) do |f|
-  = f.text_area :body, placeholder: "Your comment..."
-  </br>
-  = f.submit "Add comment"
-  
 %h3 Comments:
 
 - @event.comments.each do |comment|
@@ -44,3 +41,8 @@
   = comment.body
   by
   = comment.user.first_name
+  
+= form_for ([@event, current_user.comments.build]) do |f|
+  = f.text_area :body, placeholder: "Your comment..."
+  </br>
+  = f.submit "Add comment", class: "btn btn-xs"
