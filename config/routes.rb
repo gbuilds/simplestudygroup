@@ -4,10 +4,11 @@ Rails.application.routes.draw do
     }
   devise_scope :user do
     get '/' => 'static_pages#home'
+    get '/getting_started' => 'static_pages#getting_started'
   end
   
   root 'static_pages#home'
-  get 'about' => 'static_pages#about'
+  
   resources :users
   resources :events do
     resources :comments

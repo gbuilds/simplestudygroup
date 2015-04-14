@@ -1,6 +1,12 @@
 @import "bootstrap-sprockets";
 @import "bootstrap";
 
+/* Page Layout */
+
+body {
+  padding-bottom: 50px;
+}
+
 /* Fonts */
 
 .notifications-flag {

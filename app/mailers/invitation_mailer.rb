@@ -1,9 +1,9 @@
 class InvitationMailer < ApplicationMailer
-  default from: 'no_reply@getstudygroup.com'
+  default from: 'no_reply@getstudygroup.herokuapp.com'
   
   def invite_email(invitation)
     @invitation = invitation
-    @url = 'getstudygroup.com'
+    @url = 'https://getstudygroup.herokuapp.com'
     mail(to: @invitation.email, subject: "Studygroup Invitation from #{@invitation.inviter_name}")
   end
 end

@@ -12,4 +12,8 @@ class StaticPagesController < DeviseController
       @user = User.new
     end
   end
+  
+  def getting_started
+  end
+  
 end
