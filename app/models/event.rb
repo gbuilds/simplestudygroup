@@ -6,6 +6,7 @@ class Event < ActiveRecord::Base
   validates_associated :city
   validate :starts_before_end_time
   
+  default_scope  { order(:start_time => :desc) }
   
   belongs_to :city
   belongs_to :creator, class_name: "User"
