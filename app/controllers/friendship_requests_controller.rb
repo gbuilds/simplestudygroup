@@ -27,7 +27,7 @@ class FriendshipRequestsController < ApplicationController
   end
   
   def index
-    @friendship_requests = current_user.pending_frequests
+    @pending_requests = current_user.pending_frequests
   end
   
   private
