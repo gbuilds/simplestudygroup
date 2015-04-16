@@ -20,8 +20,15 @@ context "Signup_Processor" do
   it "finds invitations matching user's email" do
     inviter = FactoryGirl.create(:user)
     invitation = FactoryGirl.create(:invitation, inviter_id: inviter.id, email: user.email)
-    expect(subject.find_inivitations_by_email).to include invitation
+    expect(subject.find_invitations_by_email).to include invitation
   end
-  # checks the database for invitations matching a certain email
-  # builds friend requests for invitation creator to user w/ user email
+  
+  it "builds proper friendship requests for each invitation" do
+    inviter = FactoryGirl.create(:user)
+    invitation = FactoryGirl.create(:invitation, inviter_id: inviter.id, email: user.email)
+    subject.create_friendship_requests
+    friendship_request = FriendshipRequest.first
+    expect(friendship_request.sender_id).to eq inviter.id
+    expect(friendship_request.receiver_id).to eq user.id
+  end
 end
