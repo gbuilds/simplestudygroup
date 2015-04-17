@@ -20,12 +20,12 @@
 
   <div class="field">
     <%= f.label :tag_list %><br />
-    <%= f.text_field :tag_list, autofocus: true, size: "60x2" %>
+    <%= f.text_field :tag_list, autofocus: true, placeholder: "e.g. Web Development, Japanese, Bioinformatics, What you're learning", size: "60x2" %>
   </div>
 
   <div class="field">
     <%= f.label :description %></br>
-<%= f.text_area :description, autofocus: true, placeholder: "About me", size: "60x5"  %>
+<%= f.text_area :description, autofocus: true, placeholder: "An about me section. You and your goals!", size: "60x5"  %>
   </div>
   <div class="field">
     <%= f.label :city_id, "City" %>
